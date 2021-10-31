@@ -68,6 +68,13 @@ def update_month(request, item_id, id):
 
     return render(request, 'updatemon.html', {'item' : item, 'mon' : mon})
 
+def customer_delete(request, id):
+    
+    i = Item.objects.get(id=id)
+    i.delete()
+    return redirect("/")
+
+
 
 def create_item(request):
     # item_name = models.

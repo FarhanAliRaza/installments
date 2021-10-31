@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from customer.views import home, pages, create_user, create_item, detail_item, update_month, invoice, invoices
+from customer.views import home, pages, create_user, create_item, detail_item, update_month, invoice, invoices, customer_delete
 from django.urls import path, include, re_path # new
 
 urlpatterns = [
@@ -23,6 +23,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')), # new
 
     path('', home),
+    path('customer_delete/<str:id>/', customer_delete),
+
     path('create-user/', create_user),
     path('invoices/', invoices),
 

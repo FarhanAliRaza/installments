@@ -42,6 +42,16 @@ class Month(models.Model):
 class Plan(models.Model):
     months = models.ManyToManyField(Month, blank=True, null = True)
 
+
+    def delete(self):
+        if self.months:
+            for i in self.months.all():
+                i.delete()
+        self.save()
+        super(Plan, self).delete()
+
+            
+
 kist_choices = (
     ('6', '6'),
     ('10', '10'),
@@ -50,7 +60,7 @@ kist_choices = (
 )
 class Item(models.Model):
     item_name = models.CharField(max_length=255, blank=True, null=True)
-    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
+    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, null=True, blank=True)
     total_amount = models.PositiveIntegerField(null=True, blank=True)
     total_recieved = models.PositiveIntegerField(null=True, blank=True)
     total_pending = models.PositiveIntegerField(null=True, blank=True)
@@ -66,7 +76,19 @@ class Item(models.Model):
 
 
     def __str__(self):
-        return self.customer.name + ' ' + self.item_name + 'id ' + str(self.id)
+        return    self.item_name + 'id ' + str(self.id)
+    def delete(self):
+        if self.customer:
+            self.customer = None
+            self.save()
+        if self.plan:
+            x = self.plan
+            self.plan = None
+            self.save()
+            x.delete()
+
+        super(Item, self).delete()
+
 
 
 
