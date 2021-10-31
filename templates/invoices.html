@@ -1,0 +1,77 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--7">
+
+
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="mb-0">Total Invoices</h3>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="table-responsive">
+            <!-- Projects table -->
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Pending</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Recieved</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in items %}
+
+                    <tr>
+                        <th scope="row">
+                            <a href="/invoice/{{i.id}}/"> {{i.customer.name}} </a>
+                        </th>
+                        <td>
+                            {{i.total_pending}}
+                        </td>
+                        <td>
+                            {{i.total_amount}}
+                        </td>
+                        <td>
+                            {{i.total_recieved}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% include "includes/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
