@@ -11,7 +11,3 @@ class Mon():
         self.month = self.month + 1
         return self.month
 
-# m = Mon(10)
-# print(m.get_next_month())
-# print(m.get_next_month())
-# print(m.get_next_month())
