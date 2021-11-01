@@ -8,6 +8,8 @@ class Customer(models.Model):
     ref_phone = models.CharField(max_length=200, blank=True, null=True)
     phone = models.CharField(max_length=30, blank=True, null=True)
     adress = models.CharField(max_length=255, blank=True, null=True)
+    cnic = models.CharField(max_length=255, blank=True, null=True)
+
 
     def __str__(self):
         return self.name

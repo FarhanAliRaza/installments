@@ -25,9 +25,11 @@ def create_user(request):
         print(request.POST)
         username = request.POST.get('username')
         phone = request.POST.get('phone')
+        cnic = request.POST.get('cnic')
+
         ref = request.POST.get('ref')
         adress = request.POST.get('adress')
-        Customer.objects.create(name =username, phone = phone, ref_name = ref , adress = adress  )
+        Customer.objects.create(name =username, phone = phone, ref_name = ref , adress = adress, cnic = cnic)
         return redirect("/")
 
 
@@ -38,6 +40,7 @@ def detail_item(request, id):
     item = Item.objects.get(id = id)
     mons = item.plan.months.all()
     return render(request, 'items.html', {'months' : mons, 'cus' : item.customer, 'item' : item})
+
 def update_month(request, item_id, id):
     item = Item.objects.get(id = item_id)
     mon = Month.objects.get(id = id)
