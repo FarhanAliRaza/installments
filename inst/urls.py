@@ -3,7 +3,12 @@ from django.urls import path
 from customer.views import home, pages, create_user, create_item, detail_item, update_month, invoice, invoices, customer_delete
 from django.urls import path, include, re_path # new
 from django.conf.urls.static import static
-from . import settings
+
+try:
+    from inst import local_settings as settings
+except:
+    from inst import  settings as settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +34,14 @@ urlpatterns = [
 
 
 ]
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+print(settings.DEPLOYED)
+if settings.DEPLOYED:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+
+    
 
