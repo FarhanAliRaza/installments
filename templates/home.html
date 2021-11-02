@@ -100,6 +100,8 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">Name</th>
+            <th scope="col">Item</th>
+
             <th scope="col">Pending</th>
             <th scope="col">Total</th>
             <th scope="col">Recieved</th>
@@ -131,6 +133,10 @@
             <th scope="row">
               <a href="/item/{{i.id}}/"> {{i.customer.name}} </a>
             </th>
+            <td>
+              {{i.item_name}}
+            </td>
+            
             <td>
               {{i.total_pending}}
             </td>
