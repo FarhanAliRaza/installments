@@ -126,7 +126,7 @@
         <tbody id="tbody">
           {% for i in items %}
 
-          <tr name={{i.customer.name}}>
+          <tr name={{i.customer.name | lower}}>
             <th scope="row">
               <a href="/item/{{i.id}}/"> {{i.customer.name}} </a>
             </th>

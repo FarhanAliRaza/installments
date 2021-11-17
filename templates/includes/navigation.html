@@ -24,8 +24,8 @@
           $(document).ready(() => {
             console.log("ready");
             $("#searchbuttonnav").click((event) => {
-              console.log($("#searchtextnav").val());
-              var x = $(`tr[name="${$("#searchtextnav").val()}"]`);
+              console.log($("#searchtextnav").val().toLowerCase());
+              var x = $(`tr[name="${$("#searchtextnav").val().toLowerCase()}"]`);
               console.log(x);
               $("#tbody").prepend(x);
               event.preventDefault();
@@ -33,8 +33,8 @@
             });
            
             $("#searchbuttonhome").click((event) => {
-              console.log($("#searchhometext").val());
-              var x = $(`tr[name="${$("#searchhometext").val()}"]`);
+              console.log($("#searchhometext").val().toLowerCase());
+              var x = $(`tr[name="${$("#searchhometext").val().toLowerCase()}"]`);
               console.log(x);
               $("#tbody").prepend(x);
               event.preventDefault();
