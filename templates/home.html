@@ -6,7 +6,6 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <!-- Header -->
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
@@ -62,19 +61,19 @@
                   </div>
                 </div>
               </div>
-      
-      
-      
-      
+
+
+
+
             </div>
           </div>
         </div>
 
       </div>
       <!-- <div class="row " style="margin-top: 10px; text-align: center; "> -->
-        <!-- <a href="/create-user/" class="btn btn-lg btn-secondary " >Add Customer</a> -->
-        <!-- <a href="/create-item/" class="btn btn-lg btn-secondary" >Add Item</a> -->
-<!--  -->
+      <!-- <a href="/create-user/" class="btn btn-lg btn-secondary " >Add Customer</a> -->
+      <!-- <a href="/create-item/" class="btn btn-lg btn-secondary" >Add Item</a> -->
+      <!--  -->
       <!-- </div> -->
     </div>
   </div>
@@ -110,33 +109,31 @@
           </tr>
         </thead>
         <script>
-          function deleteCall(id, name){
-              let x = confirm(`Are you sure you want to delete ${name}`);
-              console.log(x);
-              if (x==true){
-                window.location.href = `/customer_delete/${id}/`
-              }
+          function deleteCall(id, name) {
+            let x = confirm(`Are you sure you want to delete ${name}`);
+            console.log(x);
+            if (x == true) {
+              window.location.href = `/customer_delete/${id}/`
+            }
 
           }
+          
 
-          // $("#customer_delete").click(
-          //   ()=>{
-          //     let x = confirm("Are you sure you want to delete {{i.customer.name}}");
-          //   }
-          // );
+
+
         </script>
-        
-        <tbody>
+
+        <tbody id="tbody">
           {% for i in items %}
-            
-          <tr>
+
+          <tr name={{i.customer.name}}>
             <th scope="row">
               <a href="/item/{{i.id}}/"> {{i.customer.name}} </a>
             </th>
             <td>
               {{i.item_name}}
             </td>
-            
+
             <td>
               {{i.total_pending}}
             </td>
@@ -147,9 +144,10 @@
               {{i.total_recieved}}
             </td>
             <td>
-              <button  id="customer_delete" onclick="deleteCall(id=`{{i.id}}`, name=`{{i.customer.name}}`)" class="btn btn-danger">Delete</button>
+              <button id="customer_delete" onclick="deleteCall(id=`{{i.id}}`, name=`{{i.customer.name}}`)"
+                class="btn btn-danger">Delete</button>
             </td>
-            
+
           </tr>
           {% endfor %}
 

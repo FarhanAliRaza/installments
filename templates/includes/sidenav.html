@@ -64,10 +64,8 @@
       <!-- Collapse header -->
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
-          <div class="col-6 collapse-brand">
-            <a href="./index.html">
-              <img src="/static/assets/img/brand/blue.png">
-            </a>
+          <div class="col-6 collapse-brand text-white">
+           Alfarooq
           </div>
           <div class="col-6 collapse-close">
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main"
@@ -79,17 +77,19 @@
         </div>
       </div>
       <!-- Form -->
-      <form class="mt-4 mb-3 d-md-none">
+      <div class="mt-4 mb-3 d-md-none">
         <div class="input-group input-group-rounded input-group-merge">
-          <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search"
+          <input type="search" id="searchtextnav" class="form-control form-control-rounded form-control-prepended" placeholder="Search"
             aria-label="Search">
           <div class="input-group-prepend">
-            <div class="input-group-text">
-              <span class="fa fa-search"></span>
+            <div class="input-group-text text-white">
+              <a id="searchbuttonnav" class="btn btn-sm" style="background-color: #b1adf1;">
+                <span class="fa fa-search"></span>
+              </a>
             </div>
           </div>
         </div>
-      </form>
+      </div>
       <!-- Navigation -->
       <ul class="navbar-nav">
         <li class="nav-item">

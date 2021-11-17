@@ -2,6 +2,14 @@ from django.db import models
 from django.utils import timezone
 
 
+class Account(models.Model):
+    name = models.CharField(max_length=255, default="hbl")
+    amount = models.PositiveIntegerField(default=0)
+    def __str__(self) -> str:
+        return self.name
+
+
+
 class Customer(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     ref_name = models.CharField(max_length=200, blank=True, null=True)

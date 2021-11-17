@@ -5,16 +5,46 @@
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/">Dashboard</a>
         <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <div class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <span class="input-group-text">
+                  <a id="searchbuttonhome" class="btn btn-sm" style="background-color: #b1adf1;">
+                    <i class="fas fa-search"></i>
+                  </a>
+                  
+                </span>
               </div>
-              <input class="form-control" placeholder="Search" type="text">
+              <input class="form-control" id="searchhometext" placeholder="Search" type="text">
             </div>
           </div>
-        </form>
+        </div>
+        <script>
+          $(document).ready(() => {
+            console.log("ready");
+            $("#searchbuttonnav").click((event) => {
+              console.log($("#searchtextnav").val());
+              var x = $(`tr[name="${$("#searchtextnav").val()}"]`);
+              console.log(x);
+              $("#tbody").prepend(x);
+              event.preventDefault();
+
+            });
+           
+            $("#searchbuttonhome").click((event) => {
+              console.log($("#searchhometext").val());
+              var x = $(`tr[name="${$("#searchhometext").val()}"]`);
+              console.log(x);
+              $("#tbody").prepend(x);
+              event.preventDefault();
+
+            });
+          }
+
+
+          );
+        </script>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
