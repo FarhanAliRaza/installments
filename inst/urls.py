@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from customer.views import home, pages, create_user, create_item, detail_item, update_month, invoice, invoices, customer_delete
+from customer.views import download, home, pages, create_user, create_item, detail_item, update_month, invoice, invoices, customer_delete
 from django.urls import path, include, re_path # new
 from django.conf.urls.static import static
 
@@ -25,6 +25,8 @@ urlpatterns = [
     path('create-item/', create_item),
     path('item/<str:id>/', detail_item),
     path('item/<str:item_id>/<str:id>/', update_month),
+    path('downloaddb/', download),
+
 
 
 

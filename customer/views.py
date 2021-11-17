@@ -1,3 +1,4 @@
+from django.http.response import FileResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.http import HttpResponse
@@ -7,6 +8,7 @@ from . forms import ItemForm
 from customer.month import  Mon
 from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 import datetime
 def home(request):
@@ -154,3 +156,22 @@ def pages(request):
     
         html_template = loader.get_template( 'page-500.html' )
         return HttpResponse(html_template.render(context, request))
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
+@login_required
+def download(request):
+    if request.user.is_superuser:
+    
+        file_path = os.path.join(settings.BASE_DIR, 'db.sqlite3')
+        if os.path.exists(file_path):
+            response = FileResponse(open(file_path, 'rb'))
+            return response
+
+            with open(file_path, 'rb') as fh:
+                response = FileResponse(fh.read())
+                response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+                return response
+        raise Http404
+    raise Http404
+    
