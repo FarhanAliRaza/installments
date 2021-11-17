@@ -11,6 +11,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 import datetime
+@login_required( login_url="/admin/login/")
+
 def home(request):
     items = Item.objects.all().order_by('-total_pending')
     total_rcvd = 0
@@ -21,6 +23,7 @@ def home(request):
     
 
     return render(request, 'home.html', {'items' : items, 'tr' : total_rcvd, 'tp' : total_pend, 'num' : len(items)})
+@login_required( login_url="/admin/login/")
 
 def create_user(request):
     if request.method == 'POST':
@@ -37,11 +40,13 @@ def create_user(request):
 
     return render(request, 'createuser.html', {})
 months = ['zero','January','February','March','April','May','June','July','August','September','October','November','December']
+@login_required( login_url="/admin/login/")
 
 def detail_item(request, id):
     item = Item.objects.get(id = id)
     mons = item.plan.months.all()
     return render(request, 'items.html', {'months' : mons, 'cus' : item.customer, 'item' : item})
+@login_required( login_url="/admin/login/")
 
 def update_month(request, item_id, id):
     item = Item.objects.get(id = item_id)
@@ -72,6 +77,7 @@ def update_month(request, item_id, id):
 
 
     return render(request, 'updatemon.html', {'item' : item, 'mon' : mon})
+@login_required( login_url="/admin/login/")
 
 def customer_delete(request, id):
     
@@ -80,6 +86,7 @@ def customer_delete(request, id):
     return redirect("/")
 
 
+@login_required( login_url="/admin/login/")
 
 def create_item(request):
     form = ItemForm()
@@ -126,16 +133,19 @@ def create_item(request):
 
 
     return render(request, 'createitem.html', {'form' : form})
+@login_required( login_url="/admin/login/")
 
 def invoice(request, id):
     item = Item.objects.get(id = id)
     return render(request, 'invoice.html', {'item' : item})
+@login_required( login_url="/admin/login/")
 
 def invoices(request):
     items = Item.objects.all()
     return render(request, 'invoices.html', {'items' : items})
 
 
+@login_required( login_url="/admin/login/")
 
 def pages(request):
     context = {}
