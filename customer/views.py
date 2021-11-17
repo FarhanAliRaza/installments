@@ -80,19 +80,6 @@ def customer_delete(request, id):
 
 
 def create_item(request):
-    # item_name = models.
-# customer = models.F
-# total_amount = mode
-# total_recieved = mo
-# total_pending = mod
-# total_kist_months =
-# advance_taken = mod
-# plan = models.OneTo
-# timestamp = models.
-# net_rate = models.Po
-# qty = models.Positiv
-# imei = models.CharFi
-# amount_in_words = mo
     form = ItemForm()
     if request.method == 'POST':
         print(request.POST)
@@ -144,7 +131,6 @@ def invoice(request, id):
 
 def invoices(request):
     items = Item.objects.all()
-    print(items)
     return render(request, 'invoices.html', {'items' : items})
 
 
