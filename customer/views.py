@@ -159,7 +159,7 @@ def pages(request):
 import os
 from django.conf import settings
 from django.http import HttpResponse, Http404
-@login_required
+@login_required( login_url="/admin/login/")
 def download(request):
     if request.user.is_superuser:
     
