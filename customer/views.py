@@ -9,7 +9,7 @@ from customer.month import  Mon
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+kk = ['zero','January','February','March','April','May','June','July','August','September','October','November','December']
 import datetime
 @login_required( login_url="/admin/login/")
 
@@ -20,9 +20,34 @@ def home(request):
     for i in items:
         total_rcvd = total_rcvd + i.total_recieved
         total_pend = total_pend + i.total_pending
-    
+    its = []
+    t = datetime.date.today()
+    # print(t.month)
+    # print(kk[t.month])
+    for i in items:
+        x = {}
+        x['name'] = i.customer.name
+        x['item_name'] = i.item_name
+        x['total_pending'] = i.total_pending
+        x['total_amount'] = i.total_amount
+        x['total_recieved'] = i.total_recieved
+        x['id'] = i.id
+        try:
+            dd = i.plan.months.get(name=kk[t.month])
+            if dd.total == dd.recieved:
+                x['nocomplete'] = False
+            else:
+                x['nocomplete'] = True
 
-    return render(request, 'home.html', {'items' : items, 'tr' : total_rcvd, 'tp' : total_pend, 'num' : len(items)})
+        except:
+            x['nocomplete'] = False
+
+        its.append(x)
+    # print(its)
+
+        
+
+    return render(request, 'home.html', {'items' : its, 'tr' : total_rcvd, 'tp' : total_pend, 'num' : len(items)})
 @login_required( login_url="/admin/login/")
 
 def create_user(request):

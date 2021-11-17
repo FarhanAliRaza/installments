@@ -126,9 +126,9 @@
         <tbody id="tbody">
           {% for i in items %}
 
-          <tr name={{i.customer.name | lower}}>
+          <tr name={{i.name | lower}} {% if i.nocomplete %} style="background-color: yellow;" {% endif %}>
             <th scope="row">
-              <a href="/item/{{i.id}}/"> {{i.customer.name}} </a>
+              <a href="/item/{{i.id}}/"> {{i.name}} </a>
             </th>
             <td>
               {{i.item_name}}
@@ -144,7 +144,7 @@
               {{i.total_recieved}}
             </td>
             <td>
-              <button id="customer_delete" onclick="deleteCall(id=`{{i.id}}`, name=`{{i.customer.name}}`)"
+              <button id="customer_delete" onclick="deleteCall(id=`{{i.id}}`, name=`{{i.name}}`)"
                 class="btn btn-danger">Delete</button>
             </td>
 
